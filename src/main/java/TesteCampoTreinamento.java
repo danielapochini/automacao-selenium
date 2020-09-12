@@ -91,14 +91,11 @@ public class TesteCampoTreinamento {
 	}
 	
 	@Test
-	public void testJavascript() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("alert('Testando JS via Selenium')");
-		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via js'");
-		js.executeScript("document.getElementById('elementosForm:sobrenome').type = 'radio'");
-		
+	public void testJavascript() { 
+		dsl.executarJS("document.getElementById('elementosForm:nome').value = 'Escrito via js'");
+		dsl.executarJS("document.getElementById('elementosForm:sobrenome').type = 'radio'");
 		WebElement element = driver.findElement(By.id("elementosForm:nome"));
-		js.executeScript("arguments[0].style.border = arguments[1]", element, "solid 4px red");
+		dsl.executarJS("arguments[0].style.border = arguments[1]", element, "solid 4px red");
 	}
 		
 }
