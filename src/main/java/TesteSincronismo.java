@@ -24,7 +24,7 @@ public class TesteSincronismo {
 	
 	@After
 	public void finaliza() {
-		//driver.quit();
+		driver.quit();
 	}
 	
 	@Test
@@ -50,4 +50,5 @@ public class TesteSincronismo {
 		//melhor forma, mais controles da espera, apenas quando necessitar, testes mais rápidos
 		dsl.escrever("novoCampo", "Deu certo?");
 	}
+	
 }
