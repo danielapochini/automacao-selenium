@@ -1,29 +1,26 @@
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver; 
+import org.openqa.selenium.By;  
+import org.openqa.selenium.WebElement; 
 
 public class TesteCampoTreinamento {
-	
-	private WebDriver driver;
+	 
 	private DSL dsl;
 	
 	@Before
-	public void inicializa(){
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");	
-		dsl = new DSL(driver);
+	public void inicializa(){  
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");	
+		dsl = new DSL();
 	}
 	
 	@After
 	public void finaliza(){
-		driver.quit();
+		killDriver();
 	}
 	
 	@Test
@@ -94,7 +91,7 @@ public class TesteCampoTreinamento {
 	public void testJavascript() { 
 		dsl.executarJS("document.getElementById('elementosForm:nome').value = 'Escrito via js'");
 		dsl.executarJS("document.getElementById('elementosForm:sobrenome').type = 'radio'");
-		WebElement element = driver.findElement(By.id("elementosForm:nome"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:nome"));
 		dsl.executarJS("arguments[0].style.border = arguments[1]", element, "solid 4px red");
 	}
 	

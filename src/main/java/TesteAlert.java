@@ -1,26 +1,24 @@
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test; 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.junit.Test;  
 
 public class TesteAlert {
-	
-	private WebDriver driver;
+	 
 	private DSL dsl;
 	
 	@Before
-	public void inicializa(){
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+	public void inicializa(){ 
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void finaliza(){
-		driver.quit();
+		killDriver();
 	}
 
 	@Test
